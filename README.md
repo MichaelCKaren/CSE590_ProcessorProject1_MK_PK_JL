@@ -10,7 +10,7 @@
 | SW         | Michael  | Finished      |
 | LW         | Pouya    | To Be Started |
 | BEQ        | Pouya    | To Be Started |
-| BNE        | Michael  | To Be Started |
+| BNE        | Michael  | In Progress   |
 | JMP        | Michael  | To Be Started |
 
 
