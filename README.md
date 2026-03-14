@@ -2,7 +2,7 @@
 
 | Instruction| Assignee | Status        |
 | :--------- | :------: | ------------: |
-| ADD        | Michael  | In Progress   |
+| ADD        | Michael  | Finished   |
 | SUB        | Jiadong  | To Be Started |
 | SLL        | Jiadong  | To Be Started |
 | AND        | Jiadong  | To Be Started |
