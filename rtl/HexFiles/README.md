@@ -9,7 +9,7 @@ There are a total of three memories that can be filled with data upon startup. T
   To load the text files into memory, utilize $readmemh
   - example for use in DataMemory module:
 ```
-  initial begin\
-    $readmemh("/insert/path/to/file/here.txt", mem_data);\
+  initial begin
+    $readmemh("/insert/path/to/file/here.txt", mem_data);
   end
 ```
