@@ -26,6 +26,7 @@ module Decoder(
     input wire reg_wen,
     input wire [15:0] reg_wdata,
     output wire [3:0] opcode_o,
+    output wire [3:0] funct_o,
     output wire [15:0] op1_o,
     output wire [15:0] op2_o,
     output wire [15:0] imm_o,
@@ -54,6 +55,7 @@ module Decoder(
 
     // Parse Funct and IMM + Sign Extended
     wire [3:0] funct = instr_i[3:0];
+    assign funct_o = funct;
     wire [3:0] imm = funct;
     wire [15:0] imm_signed = {{12{imm[3]}},imm};
     assign imm_o = imm_signed;
