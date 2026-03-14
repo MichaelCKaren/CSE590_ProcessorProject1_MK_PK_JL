@@ -34,8 +34,14 @@ module PC(
     reg [7:0] instruction_mem [0:127];
     
     initial begin
-        $readmemh("/home/waveshop/Documents/PersonalMK/School/CSE590_Project1/tests/hex_data.txt", instruction_mem);
+        instruction_mem[0] = 8'b10110000;
+        instruction_mem[1] = 8'b00001100;
+        instruction_mem[2] = 8'b00110000;
+        instruction_mem[3] = 8'b00000110;
     end
+    //initial begin
+    //    $readmemh("/home/waveshop/Documents/PersonalMK/School/CSE590_Project1/tests/hex_data.txt", instruction_mem);
+    //end
     
     //// Fetch and Increment
     always @(posedge clk) begin

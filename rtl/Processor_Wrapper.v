@@ -31,7 +31,7 @@ module Processor_Wrapper(
     wire [15:0] instr;
     
     // Decoder Signals
-    wire [15:0] reg_wdata;
+    reg [15:0] reg_wdata;
     wire [3:0] opcode;
     wire [3:0] funct;
     wire [15:0] op1_d;
@@ -98,7 +98,7 @@ module Processor_Wrapper(
     );
     
     DataMemory u_mem(
-    .mem_we(mem_we),
+    .mem_wen(mem_wen),
     .mem_ren(mem_ren),
     .mem_addr_i(alu_result),
     .mem_data_i(op2_d),

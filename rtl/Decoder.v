@@ -36,6 +36,10 @@ module Decoder(
     // Instaniate Register File
     reg [15:0] reg_file [0:15];
     
+    initial begin
+        $readmemh("/home/waveshop/Documents/PersonalMK/School/CSE590_Project1/tests/ADD_TEST_REG.txt", reg_file);
+    end
+    
     // Parse Opcode 
     wire [3:0] opcode = instr_i[15:12];
     assign opcode_o = opcode;
