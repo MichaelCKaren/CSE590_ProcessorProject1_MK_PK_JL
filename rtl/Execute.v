@@ -32,6 +32,7 @@ module Execute(
     );
     
     always @(*) begin
+        zero = (op1_i == op2_i) ? 1'b1 : 1'b0;
         case (alu_sel)
             `ALU_ADD : begin
                 alu_result = op1_i + op2_i;
@@ -47,7 +48,6 @@ module Execute(
             end
             default : begin
                 alu_result = `ZeroWord;
-                zero = 1'b0;
             end
         endcase
     end
