@@ -5,3 +5,9 @@ There are a total of three memories that can be filled with data upon startup. T
       - Purpose is to store data for computation, GenerateHexFiles.py can be useful.
   - DM: Byte addressed meaning 8 bit width,   0-127 in size.
       - Purpose is to store data for storage, GenerateHexFiles.py can be useful.
+   
+  To load the text files into memory, utilize $readmemh
+    - example for use in DataMemory module:
+  initial begin
+    $readmemh("/insert/path/to/file/here.txt", mem_data);
+  end
