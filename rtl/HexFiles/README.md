@@ -7,7 +7,7 @@ There are a total of three memories that can be filled with data upon startup. T
       - Purpose is to store data for storage, GenerateHexFiles.py can be useful.
    
   To load the text files into memory, utilize $readmemh
-  - example for use in DataMemory module:
+  - example for use in DataMemory module: Note - file does not need to be added to project, as long as the file is on your local computer and the path is correct it will work.
 ```
   initial begin
     $readmemh("/insert/path/to/file/here.txt", mem_data);
