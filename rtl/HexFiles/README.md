@@ -4,4 +4,4 @@ There are a total of three memories that can be filled with data upon startup. T
   - RF: Word addressed meaning 16 bit width,  0-15 in size.
       - Purpose is to store data for computation, GenerateHexFiles.py can be useful.
   - DM: Byte addressed meaning 8 bit width,   0-127 in size.
-      - Purpose is to store data permanently, GenerateHexFiles.py can be useful.
+      - Purpose is to store data for storage, GenerateHexFiles.py can be useful.
