@@ -30,14 +30,21 @@ module DataMemory(
    
     // Initialize Data Memory
     reg [7:0] mem_data [0:127];
+    initial begin
+        $readmemh("/home/waveshop/Documents/PersonalMK/School/CSE590_Project1/ZEROS_MEM.txt", mem_data);
+    end
    
     // Memory Write, Memory Read, and Memory Default
+    reg [6:0] mem_addr;
     always @(*) begin
+        // Shift Left By 1
+        mem_addr = mem_addr_i << 1;
         if (mem_wen == 1'b1) begin
-            mem_data[mem_addr_i] = mem_data_i;
+            mem_data[mem_addr] = mem_data_i[7:0];
+            mem_data[mem_addr+1] = mem_data_i[15:8];
         end
         else if (mem_ren == 1'b1) begin
-            mem_data_o = mem_data[mem_addr_i];
+            mem_data_o = {mem_data[mem_addr_i+1], mem_data[mem_addr_i]};
         end
         else begin
             mem_data_o = `ZeroWord;

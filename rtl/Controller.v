@@ -42,7 +42,7 @@ module Controller(
                     `FUNCT_ADD : begin
                         reg_wen = 1'b1;
                         op2_sel = 1'b0;
-                        alu_sel = 2'd0;
+                        alu_sel = `ALU_ADD;
                         branch  = 1'b0;
                         jump    = 1'b0;
                         mem_wen = 1'b0;
@@ -74,7 +74,14 @@ module Controller(
                
             end
             `OP_SW : begin
-                
+                reg_wen = 1'b0;
+                op2_sel = 1'b1;
+                alu_sel = `ALU_SW;
+                branch  = 1'b0;
+                jump    = 1'b0;
+                mem_wen = 1'b1;
+                mem_ren = 1'b0;
+                wb_sel  = 1'b0;    
             end
             `OP_ADDI : begin
                 

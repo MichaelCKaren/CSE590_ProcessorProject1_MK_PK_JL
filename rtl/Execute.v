@@ -31,20 +31,35 @@ module Execute(
     output reg zero
     );
     
+    reg [15:0] op1;
+    reg [15:0] op2;
     always @(*) begin
-        zero = (op1_i == op2_i) ? 1'b1 : 1'b0;
+        // OP2 Selection mux between RT/RD and IMM
+        op1 = op1_i;
+        if (op2_sel == 1'b0)
+            op2 = op2_i;
+        else
+            op2 = imm;
+            
+        // Branch Equivalence Result
+        zero = (op1 == op2) ? 1'b1 : 1'b0;
+        
+        // Computation Result
         case (alu_sel)
             `ALU_ADD : begin
-                alu_result = op1_i + op2_i;
+                alu_result = $signed(op1) + $signed(op2);
             end
             `ALU_SUB : begin
-            
+                
             end
             `ALU_SLL : begin
             
             end
             `ALU_AND : begin
             
+            end
+            `ALU_SW : begin
+                alu_result = op1 + $signed(op2);
             end
             default : begin
                 alu_result = `ZeroWord;

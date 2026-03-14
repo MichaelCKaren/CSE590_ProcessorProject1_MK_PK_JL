@@ -37,7 +37,9 @@ module Decoder(
     reg [15:0] reg_file [0:15];
     
     initial begin
-        $readmemh("/home/waveshop/Documents/PersonalMK/School/CSE590_Project1/tests/ADD_TEST_REG.txt", reg_file);
+        //$readmemh("/home/waveshop/Documents/PersonalMK/School/CSE590_Project1/tests/ADD_TEST_REG.txt", reg_file);
+        $readmemh("/home/waveshop/Documents/PersonalMK/School/CSE590_Project1/SW_TEST_REG.txt", reg_file);
+        reg_file[15] = 16'hB0BA;
     end
     
     // Parse Opcode 

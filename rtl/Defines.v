@@ -34,10 +34,11 @@
 
 `define ZeroWord 16'h0000
 
-`define ALU_ADD 2'b00
-`define ALU_SUB 2'b01
-`define ALU_SLL 2'b10
-`define ALU_AND 2'b11
+`define ALU_ADD 3'b000
+`define ALU_SUB 3'b001
+`define ALU_SLL 3'b010
+`define ALU_AND 3'b011
+`define ALU_SW  3'b100
 
 
 
