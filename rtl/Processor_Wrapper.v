@@ -24,22 +24,24 @@ module Processor_Wrapper(
     input wire clk
     );
     
-    // Instruction Fetch Signal
-    wire [6:0] im_addr_i;
-    wire [6:0] im_addr_o;
-    assign im_addr_i = im_addr_o;
+    // ========== Routing Signals ==========
+    // Instruction Fetch Signals
+    wire [15:0] im_addr_i;
+    wire [15:0] im_addr_o;
+    wire [15:0] im_addr_final;
+    assign im_addr_i = im_addr_final;
     wire [15:0] instr;
     
-    // Decoder Signals
+    // Decoder Output Signals
     reg [15:0] reg_wdata;
     wire [3:0] opcode;
     wire [3:0] funct;
     wire [15:0] op1_d;
     wire [15:0] op2_d;
     wire [15:0] imm;
-    wire [11:0] j_addr;
+    wire [15:0] j_addr;
     
-    // Controller Signals
+    // Controller Output Signals
     wire reg_wen;
     wire op2_sel;
     wire [1:0] alu_sel;
@@ -49,13 +51,14 @@ module Processor_Wrapper(
     wire mem_ren;
     wire wb_sel;
     
-    // Execute Signals
+    // Execute Output Signals
     wire [15:0] alu_result;
     wire zero;
     
     // Memory Signals
     wire [15:0] mem_data;
     
+    // ========== Hardware Modules ==========
     PC u_if (
     .clk(clk),
     .im_addr_i(im_addr_i),
@@ -97,6 +100,16 @@ module Processor_Wrapper(
     .zero(zero)
     );
     
+    ProgramAddressCalc u_pc_calc(
+    .im_addr_i(im_addr_o),
+    .b_imm(imm),
+    .j_imm(j_addr),
+    .zero(zero),
+    .branch(branch),
+    .jump(jump),
+    .im_addr_o(im_addr_final)
+    );
+    
     DataMemory u_mem(
     .mem_wen(mem_wen),
     .mem_ren(mem_ren),
@@ -105,6 +118,7 @@ module Processor_Wrapper(
     .mem_data_o(mem_data)
     );
     
+    // ========== WB MUX ==========
     always @(*) begin
         if (wb_sel == 0)
             reg_wdata = alu_result;

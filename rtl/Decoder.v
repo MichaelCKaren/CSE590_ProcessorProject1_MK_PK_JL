@@ -30,7 +30,7 @@ module Decoder(
     output wire [15:0] op1_o,
     output wire [15:0] op2_o,
     output wire [15:0] imm_o,
-    output wire [11:0] j_addr_o
+    output wire [15:0] j_addr_o
     );
     
     // Instaniate Register File
@@ -65,6 +65,7 @@ module Decoder(
     wire [3:0] imm = funct;
     wire [15:0] imm_signed = {{12{imm[3]}},imm};
     assign imm_o = imm_signed;
+    assign j_addr_o = {{4{instr_i[11]}},instr_i[11:0]};
     
     // Write Operation
     always @(*) begin

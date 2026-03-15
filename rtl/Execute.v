@@ -24,6 +24,7 @@
 module Execute(
     input wire op2_sel,
     input wire alu_sel,
+    input wire b_condition,
     input wire [15:0] op1_i,
     input wire [15:0] op2_i,
     input wire [15:0] imm,
@@ -42,7 +43,10 @@ module Execute(
             op2 = imm;
             
         // Branch Equivalence Result
-        zero = (op1 == op2) ? 1'b1 : 1'b0;
+        if (b_condition == 0)   
+            zero = (op1 == op2) ? 1'b1 : 1'b0;  // BEQ
+        else                    
+            zero = (op1 != op2) ? 1'b1 : 1'b0;// BNE
         
         // Computation Result
         case (alu_sel)

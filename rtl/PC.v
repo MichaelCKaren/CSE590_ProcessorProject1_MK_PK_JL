@@ -22,14 +22,13 @@
 
 module PC(
     input wire clk,
-    input wire [6:0] im_addr_i,
-    output wire [6:0] im_addr_o,
+    input wire [15:0] im_addr_i,
+    output wire [15:0] im_addr_o,
     output wire [15:0] instr_o
     );
     
     //// Clocked Registers
-    reg [6:0] im_addr_reg = 7'b0000000;
-    reg [15:0] instr_reg;
+    reg [15:0] im_addr_reg = 16'h0000;
     // Instruction Memeory 
     reg [7:0] instruction_mem [0:127];
     
@@ -40,6 +39,11 @@ module PC(
         // STORE WORD TEST
         instruction_mem[2] = 8'b11100000;
         instruction_mem[3] = 8'b00101111;
+        //BNE TEST
+        //instruction_mem[4] = 8'b00101101;
+        //instruction_mem[5] = 8'b01010100;
+        instruction_mem[4] = 8'b11111101;
+        instruction_mem[5] = 8'b01101111;
     end
     //initial begin
     //    $readmemh("/home/waveshop/Documents/PersonalMK/School/CSE590_Project1/tests/hex_data.txt", instruction_mem);
@@ -47,16 +51,16 @@ module PC(
     
     //// Fetch and Increment
     always @(posedge clk) begin
-        if (im_addr_i < 128)
-            im_addr_reg <= im_addr_i+2;
-        else 
-            im_addr_reg <= 7'b0000000;
+        //if (im_addr_i < 128)
+            im_addr_reg <= im_addr_i;
+        //else 
+            //im_addr_reg <= 16'h0000;
     end
     
     
-    assign im_addr_o = im_addr_reg;
-    assign instr_o[7:0] = instruction_mem[im_addr_i];
-    assign instr_o[15:8] = instruction_mem[im_addr_i+1];
+    assign im_addr_o = im_addr_reg+2;
+    assign instr_o[7:0] = instruction_mem[im_addr_reg];
+    assign instr_o[15:8] = instruction_mem[im_addr_reg+1];
    
     
 endmodule
