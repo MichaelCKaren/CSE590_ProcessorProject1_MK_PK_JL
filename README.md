@@ -10,8 +10,8 @@
 | SW         | Michael  | Finished      |
 | LW         | Pouya    | To Be Started |
 | BEQ        | Pouya    | To Be Started |
-| BNE        | Michael  | In Progress   |
-| JMP        | Michael  | To Be Started |
+| BNE        | Michael  | Finished      |
+| JMP        | Michael  | Finished      |
 
 
 <img width="2201" height="1041" alt="CSE590_PROJECT1_OVERVIEW" src="data_path_final.png" />
