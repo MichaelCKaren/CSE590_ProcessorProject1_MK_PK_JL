@@ -74,6 +74,16 @@ module Controller(
                 endcase
             end
             `OP_LW : begin
+                reg_wen = 1'b1;
+                op2_sel = 1'b1;
+                alu_sel = `ALU_LW;
+                b_con   = 1'b0;
+                branch  = 1'b0;
+                jump    = 1'b0;
+                mem_wen = 1'b0;
+                mem_ren = 1'b1;
+                wb_sel  = 1'b1;
+
                
             end
             `OP_SW : begin
@@ -88,9 +98,27 @@ module Controller(
                 wb_sel  = 1'b0;    
             end
             `OP_ADDI : begin
+                reg_wen = 1'b1;
+                op2_sel = 1'b1;
+                alu_sel = `ALU_ADD;
+                b_con   = 1'b0;
+                branch  = 1'b0;
+                jump    = 1'b0;
+                mem_wen = 1'b0;
+                mem_ren = 1'b0;
+                wb_sel  = 1'b0;
                 
             end
             `OP_BEQ : begin
+                reg_wen = 1'b0;
+                op2_sel = 1'b0;
+                alu_sel = 3'd0;
+                b_con   = 1'b0;
+                branch  = 1'b1;
+                jump    = 1'b0;
+                mem_wen = 1'b0;
+                mem_ren = 1'b0;
+                wb_sel  = 1'b0;
                 
             end
             `OP_BNE : begin
