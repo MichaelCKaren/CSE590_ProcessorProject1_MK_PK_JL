@@ -21,9 +21,51 @@
 
 
 module Processor_Wrapper(
-    input wire clk
+    input wire clk_crystal,
+    input wire clk_button,
+    input wire clk_mux_switch,
+    
+    output wire A,
+    output wire B,
+    output wire C,
+    output wire D,
+    output wire E,
+    output wire F,
+    output wire G,
+    output wire DOT,
+    output wire digit3,
+    output wire digit2,
+    output wire digit1,
+    output wire digit0
     );
     
+    // Generating CLK with 4 second period
+    localparam clk_freq_half = 100000000;
+    reg [26:0] clk_count = 0;
+    reg clk_oneFourthHZ = 0;
+    always @(posedge clk_crystal) begin
+        if (clk_count >= clk_freq_half - 1) begin
+            clk_oneFourthHZ <= ~clk_oneFourthHZ;
+            clk_count <= 0;
+        end
+        else begin
+            clk_count <= clk_count + 1;
+        end
+    end
+    
+    // Clock Input MUX --0 for FPGA Clock, --1 for button
+    reg clk;
+    always @(*) begin
+        if (clk_mux_switch == 1'b0) begin
+            clk = clk_oneFourthHZ;
+        end
+        else begin 
+            clk = clk_button;
+        end
+    end
+
+
+
     // ========== Routing Signals ==========
     // Instruction Fetch Signals
     wire [15:0] im_addr_i;
@@ -125,5 +167,29 @@ module Processor_Wrapper(
         else
             reg_wdata = mem_data;
     end
+
+
+
+
+        // DIGITAL DISPLAY DECODER
+    SevenSegmentDisplay u_display(
+    .s_clk(clk),
+    .s_aresetn(1'b1),
+    .m_clk(clk_digit),
+    .m_aresetn(1'b1),
+    .data(op1_d),
+    .A(A),
+    .B(B),
+    .C(C),
+    .D(D),
+    .E(E),
+    .F(F),
+    .G(G),
+    .DOT(DOT),
+    .digit3(digit3),
+    .digit2(digit2),
+    .digit1(digit1),
+    .digit0(digit0)
+    );
     
 endmodule
