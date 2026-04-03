@@ -14,4 +14,4 @@
 | JMP        | Michael  | Finished      |
 
 
-<img width="2201" height="1041" alt="CSE590_PROJECT1_OVERVIEW" src="data_path_final.png" />
+<img width="2201" height="1041" alt="CSE590_PROJECT1_OVERVIEW" src="data_path/data_path_final.png" />

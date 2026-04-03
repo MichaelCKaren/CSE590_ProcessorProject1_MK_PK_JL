@@ -44,7 +44,7 @@ module DataMemory(
             mem_data[mem_addr+1] = mem_data_i[15:8];
         end
         else if (mem_ren == 1'b1) begin
-            mem_data_o = {mem_data[mem_addr_i+1], mem_data[mem_addr_i]};
+            mem_data_o = {mem_data[mem_addr+1], mem_data[mem_addr]};
         end
         else begin
             mem_data_o = `ZeroWord;
