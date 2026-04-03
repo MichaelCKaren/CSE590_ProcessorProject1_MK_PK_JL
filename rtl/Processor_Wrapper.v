@@ -69,7 +69,7 @@ module Processor_Wrapper(
     Decoder u_id (
     .instr_i(instr),
     .reg_wen(reg_wen),
-    .reg_wdata(),
+    .reg_wdata(reg_wdata),
     .opcode_o(opcode),
     .op1_o(op1_d),
     .op2_o(op2_d),
