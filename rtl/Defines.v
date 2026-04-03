@@ -39,6 +39,7 @@
 `define ALU_SLL 3'b010
 `define ALU_AND 3'b011
 `define ALU_SW  3'b100
+`define ALU_LW  3'b101
 
 
 
