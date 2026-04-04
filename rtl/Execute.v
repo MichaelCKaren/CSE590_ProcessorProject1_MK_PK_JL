@@ -23,7 +23,7 @@
 `include "Defines.v"
 module Execute(
     input wire op2_sel,
-    input wire alu_sel,
+    input wire [2:0]alu_sel,
     input wire b_condition,
     input wire [15:0] op1_i,
     input wire [15:0] op2_i,
