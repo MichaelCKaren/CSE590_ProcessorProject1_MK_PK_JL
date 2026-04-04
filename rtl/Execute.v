@@ -65,7 +65,7 @@ module Execute(
             `ALU_SW : begin
                 alu_result = op1 + $signed(op2);
             end
-            'ALU_LW : begin
+            `ALU_LW : begin
                 alu_result = op1 + $signed(op2);
             end
             default : begin
