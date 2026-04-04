@@ -54,13 +54,13 @@ module Execute(
                 alu_result = $signed(op1) + $signed(op2);
             end
             `ALU_SUB : begin
-                
+                alu_result = $signed(op1) - $signed(op2);   
             end
             `ALU_SLL : begin
-            
+                alu_result = op2 << op1[3:0];
             end
             `ALU_AND : begin
-            
+                alu_result = op1 & op2;
             end
             `ALU_SW : begin
                 alu_result = op1 + $signed(op2);
