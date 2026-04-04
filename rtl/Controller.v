@@ -54,40 +54,40 @@ module Controller(
                         digit_w = 1'b0;
                     end
                     `FUNCT_SUB : begin
-                       reg_wen = 1'b1;
-                       op2_sel = 1'b0;
-                       alu_sel = `ALU_SUB;
-                       b_con = 1'b0;
-                       branch = 1'b0;
-                       jump = 1'b0;
-                       mem_wen = 1'b0;
-                       mem_ren = 1'b0;
-                       wb_sel = 1'b0;
-                        
+                        reg_wen = 1'b1;
+                        op2_sel = 1'b0;
+                        alu_sel = `ALU_SUB;
+                        b_con = 1'b0;
+                        branch = 1'b0;
+                        jump = 1'b0;
+                        mem_wen = 1'b0;
+                        mem_ren = 1'b0;
+                        wb_sel = 1'b0;
+                        digit_w = 1'b0;
                     end
                     `FUNCT_SLL : begin
-                       reg_wen = 1'b1;
-                       op2_sel = 1'b0;
-                       alu_sel = `ALU_SLL;
-                       b_con = 1'b0;
-                       branch = 1'b0;
-                       jump = 1'b0;
-                       mem_wen = 1'b0;
-                       mem_ren = 1'b0;
-                       wb_sel = 1'b0;
-                        
+                        reg_wen = 1'b1;
+                        op2_sel = 1'b0;
+                        alu_sel = `ALU_SLL;
+                        b_con = 1'b0;
+                        branch = 1'b0;
+                        jump = 1'b0;
+                        mem_wen = 1'b0;
+                        mem_ren = 1'b0;
+                        wb_sel = 1'b0;
+                        digit_w = 1'b0;
                     end
                     `FUNCT_AND : begin
-                       reg_wen = 1'b1;
-                       op2_sel = 1'b0;
-                       alu_sel = `ALU_AND;
-                       b_con = 1'b0;
-                       branch = 1'b0;
-                       jump = 1'b0;
-                       mem_wen = 1'b0;
-                       mem_ren = 1'b0;
-                       wb_sel = 1'b0;
-                        
+                        reg_wen = 1'b1;
+                        op2_sel = 1'b0;
+                        alu_sel = `ALU_AND;
+                        b_con = 1'b0;
+                        branch = 1'b0;
+                        jump = 1'b0;
+                        mem_wen = 1'b0;
+                        mem_ren = 1'b0;
+                        wb_sel = 1'b0;
+                        digit_w = 1'b0;
                     end
                     default : begin
                         reg_wen = 1'b0;
