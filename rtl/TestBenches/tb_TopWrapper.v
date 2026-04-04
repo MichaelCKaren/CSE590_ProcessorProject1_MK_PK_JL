@@ -23,10 +23,14 @@
 module tb_TopWrapper(
     );
     
-    reg clk = 0;
-    always #5 clk = ~clk;
+    reg clk_button = 0;
+    always #1000 clk_button = ~clk_button;
+    reg clk_crystal = 0;
+    always #1 clk_crystal = ~clk_crystal;
     
     Processor_Wrapper UUT (
-    .clk(clk)
+    .clk_crystal(clk_crystal),
+    .clk_button(clk_button),
+    .clk_mux_switch(1'b1)
     );
 endmodule
