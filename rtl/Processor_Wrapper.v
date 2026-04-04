@@ -25,6 +25,7 @@ module Processor_Wrapper(
     input wire clk_button,
     input wire clk_mux_switch,
     
+    output wire [15:0] instr_o,
     output wire A,
     output wire B,
     output wire C,
@@ -86,12 +87,14 @@ module Processor_Wrapper(
     // Controller Output Signals
     wire reg_wen;
     wire op2_sel;
-    wire [1:0] alu_sel;
+    wire [2:0] alu_sel;
+    wire b_con;
     wire branch;
     wire jump;
     wire mem_wen;
     wire mem_ren;
     wire wb_sel;
+    wire digit_w;
     
     // Execute Output Signals
     wire [15:0] alu_result;
@@ -113,6 +116,7 @@ module Processor_Wrapper(
     .reg_wen(reg_wen),
     .reg_wdata(reg_wdata),
     .opcode_o(opcode),
+    .funct_o(funct),
     .op1_o(op1_d),
     .op2_o(op2_d),
     .imm_o(imm),
@@ -124,17 +128,20 @@ module Processor_Wrapper(
     .funct(funct),
     .reg_wen(reg_wen),         
     .op2_sel(op2_sel),         
-    .alu_sel(alu_sel),    
+    .alu_sel(alu_sel), 
+    .b_con(b_con),   
     .branch(branch),          
     .jump(jump),            
     .mem_wen(mem_wen),         
     .mem_ren(mem_ren),         
-    .wb_sel(wb_sel)           
+    .wb_sel(wb_sel),
+    .digit_w(digit_w)           
     );
     
     Execute u_ex (
     .op2_sel(op2_sel),
     .alu_sel(alu_sel),
+    .b_condition(b_con),
     .op1_i(op1_d),
     .op2_i(op2_d),
     .imm(imm),
@@ -170,14 +177,29 @@ module Processor_Wrapper(
 
 
 
+    // Digital Display CLK
+    localparam clk_freq_half_2 = 25000;
+    //localparam clk_freq_half_2 = 5;
+    reg [26:0] clk_count_2 = 0;
+    reg clk_digit = 0;
+    always @(posedge clk_crystal) begin
+        if (clk_count_2 >= clk_freq_half_2 - 1) begin
+            clk_digit <= ~clk_digit;
+            clk_count_2 <= 0;
+        end
+        else begin
+            clk_count_2 <= clk_count_2 + 1;
+        end
+    end
 
-        // DIGITAL DISPLAY DECODER
+    // DIGITAL DISPLAY DECODER
     SevenSegmentDisplay u_display(
     .s_clk(clk),
     .s_aresetn(1'b1),
     .m_clk(clk_digit),
     .m_aresetn(1'b1),
     .data(op1_d),
+    .digit_w(digit_w),
     .A(A),
     .B(B),
     .C(C),
@@ -191,5 +213,7 @@ module Processor_Wrapper(
     .digit1(digit1),
     .digit0(digit0)
     );
+    
+    assign instr_o = instr;
     
 endmodule

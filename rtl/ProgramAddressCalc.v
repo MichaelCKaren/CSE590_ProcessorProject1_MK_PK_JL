@@ -30,8 +30,8 @@ module ProgramAddressCalc(
     output wire [15:0] im_addr_o
     );
     
-    reg [15:0] im_addr_reg1;
-    reg [15:0] im_addr_reg2;
+    reg [15:0] im_addr_reg1 = 0;
+    reg [15:0] im_addr_reg2 = 2;
     
     always @(*) begin
         // Branch Condition

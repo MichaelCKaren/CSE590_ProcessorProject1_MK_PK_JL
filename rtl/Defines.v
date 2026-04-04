@@ -31,6 +31,7 @@
 `define OP_BEQ 4'b0100
 `define OP_BNE 4'b0101
 `define OP_JMP 4'b0110
+`define OP_DIG 4'b1111
 
 `define ZeroWord 16'h0000
 
