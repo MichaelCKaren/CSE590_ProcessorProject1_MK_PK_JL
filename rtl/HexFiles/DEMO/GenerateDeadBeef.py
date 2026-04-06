@@ -2,6 +2,13 @@ import numpy as np
 
 mem = np.zeros(128, dtype=np.uint8)
 
+
+# The below scrit utilizes ADDI, ADD, SUB, SLL, LW, SW, DIG(custom), and JMP instructions 
+# to build the DEAD and BEEF words in registers and memory, then loops infinitely printing the values.  
+
+# Other that need to be proven in another demo, AND, BNE, BEQ, 
+
+
 # ---- Build DEAD ----
 
 # Load R1 = 0x0D (split: 7+6)
