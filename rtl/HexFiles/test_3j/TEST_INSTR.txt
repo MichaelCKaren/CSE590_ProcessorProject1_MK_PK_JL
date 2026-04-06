@@ -1,0 +1,32 @@
+21
+41 // 16'h4121 | PC=0:  BEQ $r1, $r2, 1  (Equal, branches to PC=4)
+09
+34 // 16'h3409 | PC=2:  ADDI $r4, $r0, 9 (FAIL STATE - should be skipped)
+01
+34 // 16'h3401 | PC=4:  ADDI $r4, $r0, 1 (Success flag for BEQ-Taken)
+31
+41 // 16'h4131 | PC=6:  BEQ $r1, $r3, 1  (Not Equal, does NOT branch)
+01
+35 // 16'h3501 | PC=8:  ADDI $r5, $r0, 1 (Success flag for BEQ-Not Taken)
+01
+60 // 16'h6001 | PC=10: JMP 1            (Skip fail state, target PC=14)
+09
+35 // 16'h3509 | PC=12: ADDI $r5, $r0, 9 (FAIL STATE - should be skipped)
+31
+51 // 16'h5131 | PC=14: BNE $r1, $r3, 1  (Not Equal, branches to PC=18)
+09
+36 // 16'h3609 | PC=16: ADDI $r6, $r0, 9 (FAIL STATE - should be skipped)
+01
+36 // 16'h3601 | PC=18: ADDI $r6, $r0, 1 (Success flag for BNE-Taken)
+21
+51 // 16'h5121 | PC=20: BNE $r1, $r2, 1  (Equal, does NOT branch)
+01
+37 // 16'h3701 | PC=22: ADDI $r7, $r0, 1 (Success flag for BNE-Not Taken)
+01
+60 // 16'h6001 | PC=24: JMP 1            (Skip fail state, target PC=28)
+09
+37 // 16'h3709 | PC=26: ADDI $r7, $r0, 9 (FAIL STATE - should be skipped)
+01
+38 // 16'h3801 | PC=28: ADDI $r8, $r0, 1 (Success flag for JMP)
+FF
+6F // 16'h6FFF | PC=30: JMP -1           (Infinite loop at end of program)

@@ -1,0 +1,16 @@
+0000 // r0 = 0
+0005 // r1 = 5
+0005 // r2 = 5
+000A // r3 = 10
+0000 // r4 = Flag for BEQ Taken
+0000 // r5 = Flag for BEQ Not Taken
+0000 // r6 = Flag for BNE Taken
+0000 // r7 = Flag for BNE Not Taken
+0000 // r8 = Flag for JMP
+0000
+0000
+0000
+0000
+0000
+0000
+0000
