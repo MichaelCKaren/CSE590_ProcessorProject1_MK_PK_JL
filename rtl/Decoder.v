@@ -22,6 +22,7 @@
 `include "Defines.v"
 
 module Decoder(
+    input wire clk,
     input wire [15:0] instr_i,
     input wire reg_wen,
     input wire [15:0] reg_wdata,
@@ -68,7 +69,7 @@ module Decoder(
     assign j_addr_o = {{4{instr_i[11]}},instr_i[11:0]};
     
     // Write Operation
-    always @(*) begin
+    always @(posedge clk) begin
         if (reg_wen == 1'b1) begin
             reg_file[rd_addr] = reg_wdata;
         end

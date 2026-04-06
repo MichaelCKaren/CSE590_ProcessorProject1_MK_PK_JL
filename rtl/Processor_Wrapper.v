@@ -112,6 +112,7 @@ module Processor_Wrapper(
     );
     
     Decoder u_id (
+    .clk(clk),
     .instr_i(instr),
     .reg_wen(reg_wen),
     .reg_wdata(reg_wdata),
@@ -160,6 +161,7 @@ module Processor_Wrapper(
     );
     
     DataMemory u_mem(
+    .clk(clk),
     .mem_wen(mem_wen),
     .mem_ren(mem_ren),
     .mem_addr_i(alu_result),
