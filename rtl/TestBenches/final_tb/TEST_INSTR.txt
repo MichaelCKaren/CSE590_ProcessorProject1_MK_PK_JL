@@ -1,0 +1,238 @@
+// ============================================================================
+// Corrected instruction memory image for full ALU + data memory test
+// ----------------------------------------------------------------------------
+// - PC.v fetches 16-bit instructions as:
+//       instr_o[7:0]  = instruction_mem[PC]
+//       instr_o[15:8] = instruction_mem[PC+1]
+//   so each instruction is stored as:
+//       low byte first
+//       high byte second
+//
+// - Instruction addresses are byte addresses.
+//   Since each instruction is 2 bytes, PCs go 0, 2, 4, 6, ...
+//
+// - This program tests:
+//       ADD, SUB, SLL, AND, ADDI, SW, LW, JMP
+//
+// - Final instruction is JMP -1 so the processor loops forever at PC = 30.
+// ============================================================================
+
+// PC = 0
+// ADD r3, r1, r0
+// instr = 16'h0310
+// opcode=0000 (R-type), rt=r3, rs=r1, funct=0000 (ADD)
+// In your CPU's operand convention, this produces the expected r3 = 8
+10
+03
+
+// PC = 2
+// SUB r4, r3, r1
+// instr = 16'h0431
+// opcode=0000, rt=r4, rs=r3, funct=0001 (SUB)
+// expected result: r4 = 7
+31
+04
+
+// PC = 4
+// SLL r6, r5, r2
+// instr = 16'h0652
+// opcode=0000, rt=r6, rs=r5, funct=0010 (SLL)
+// expected result: r6 = 000C
+52
+06
+
+// PC = 6
+// AND r7, r3, r3
+// instr = 16'h0733
+// opcode=0000, rt=r7, rs=r3, funct=0011 (AND)
+// expected result: r7 = 0008
+33
+07
+
+// PC = 8
+// ADDI r8, r0, 7
+// instr = 16'h3807
+// opcode=0011, rt=r8, rs=r0, imm=7
+// expected result: r8 = 0007
+07
+38
+
+// ---------------------------------------------------------------------------
+// Store ALU results into data memory
+// ---------------------------------------------------------------------------
+
+// PC = 10
+// SW r3, 2(r0)
+// instr = 16'h2302
+// memory word address 2 gets 0008
+02
+23
+
+// PC = 12
+// SW r4, 3(r0)
+// instr = 16'h2403
+// memory word address 3 gets 0007
+03
+24
+
+// PC = 14
+// SW r6, 4(r0)
+// instr = 16'h2604
+// memory word address 4 gets 000C
+04
+26
+
+// PC = 16
+// SW r7, 5(r0)
+// instr = 16'h2705
+// memory word address 5 gets 0008
+05
+27
+
+// PC = 18
+// SW r8, 6(r0)
+// instr = 16'h2806
+// memory word address 6 gets 0007
+06
+28
+
+// ---------------------------------------------------------------------------
+// Load back memory values into registers
+// ---------------------------------------------------------------------------
+
+// PC = 20
+// LW r9, 2(r0)
+// instr = 16'h1902
+// expected result: r9 = 0008
+02
+19
+
+// PC = 22
+// LW r10, 3(r0)
+// instr = 16'h1A03
+// expected result: r10 = 0007
+03
+1A
+
+// PC = 24
+// LW r11, 4(r0)
+// instr = 16'h1B04
+// expected result: r11 = 000C
+04
+1B
+
+// PC = 26
+// LW r12, 5(r0)
+// instr = 16'h1C05
+// expected result: r12 = 0008
+05
+1C
+
+// PC = 28
+// LW r13, 6(r0)
+// instr = 16'h1D06
+// expected result: r13 = 0007
+06
+1D
+
+// ---------------------------------------------------------------------------
+// End program by looping forever
+// ---------------------------------------------------------------------------
+
+// PC = 30
+// JMP -1
+// instr = 16'h6FFF
+// opcode=0110, immediate = 12'hFFF = -1 after sign extension
+// next PC = current sequential PC + (-1 << 1), so PC stays at 30 forever
+FF
+6F
+
+// ---------------------------------------------------------------------------
+// Padding: remaining instruction memory bytes are zero
+// ---------------------------------------------------------------------------
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00
+00

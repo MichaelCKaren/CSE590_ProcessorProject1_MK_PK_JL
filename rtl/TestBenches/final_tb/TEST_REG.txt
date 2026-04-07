@@ -1,0 +1,64 @@
+// ============================================================================
+// Register file initialization for ALU + data memory test
+// ----------------------------------------------------------------------------
+// One 16-bit value per line.
+// Line number = register number.
+//
+// r0  = constant-like zero source for addressing base
+// r1  = 3
+// r2  = 4
+// r3  = 5   (will later be overwritten by ADD result = 8)
+// r4  = 1   (used in arithmetic, later overwritten by SUB result = 7)
+// r5  = 1
+// r6  = 6   (later overwritten by SLL result = 12)
+// r7  = 10  (later overwritten by AND result = 8)
+// r8+ = start as needed / overwritten later by ADDI and loads
+// ============================================================================
+
+// r0
+0000
+
+// r1
+0003
+
+// r2
+0004
+
+// r3
+0005
+
+// r4
+0001
+
+// r5
+0001
+
+// r6
+0006
+
+// r7
+000A
+
+// r8
+0000
+
+// r9
+0000
+
+// r10
+0000
+
+// r11
+0000
+
+// r12
+0000
+
+// r13
+0000
+
+// r14
+0000
+
+// r15
+0000
