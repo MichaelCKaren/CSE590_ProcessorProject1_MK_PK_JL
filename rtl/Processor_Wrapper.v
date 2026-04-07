@@ -41,7 +41,7 @@ module Processor_Wrapper(
     );
     
     // Generating CLK with 4 second period
-    localparam clk_freq_half = 100000000;
+    localparam clk_freq_half = 25000000;
     reg [26:0] clk_count = 0;
     reg clk_oneFourthHZ = 0;
     always @(posedge clk_crystal) begin
