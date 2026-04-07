@@ -32,22 +32,23 @@ module PC(
     // Instruction Memeory 
     reg [7:0] instruction_mem [0:127];
     
-    initial begin
-        // ADD TEST
-        instruction_mem[0] = 8'b00110000;
-        instruction_mem[1] = 8'b00000110;
-        // STORE WORD TEST
-        instruction_mem[2] = 8'b11100000;
-        instruction_mem[3] = 8'b00101111;
-        //BNE TEST
-        //instruction_mem[4] = 8'b00101101;
-        //instruction_mem[5] = 8'b01010100;
-        instruction_mem[4] = 8'b11111101;
-        instruction_mem[5] = 8'b01101111;
-    end
     //initial begin
-    //    $readmemh("/home/waveshop/Documents/PersonalMK/School/CSE590_Project1/tests/hex_data.txt", instruction_mem);
+    //    // ADD TEST
+    //    instruction_mem[0] = 8'b00110000;
+    //    instruction_mem[1] = 8'b00000110;
+    //    // STORE WORD TEST
+    //    instruction_mem[2] = 8'b11100000;
+    //    instruction_mem[3] = 8'b00101111;
+    //    //BNE TEST
+    //    //instruction_mem[4] = 8'b00101101;
+    //    //instruction_mem[5] = 8'b01010100;
+    //    instruction_mem[4] = 8'b11111101;
+    //    instruction_mem[5] = 8'b01101111;
     //end
+    initial begin
+    //    $readmemh("/home/waveshop/Documents/PersonalMK/School/CSE590_Project1/tests/hex_data.txt", instruction_mem);
+        $readmemh("/home/waveshop/CSE590_ProcessorProject1_MK_PK_JL/rtl/HexFiles/DEMO/IM_DEADBEEF.txt", instruction_mem);
+    end
     
     //// Fetch and Increment
     always @(posedge clk) begin
